@@ -166,13 +166,10 @@ public abstract class SponsorBlockUtils {
 
         final EditText textView = new EditText(context);
         textView.setHint(DATE_FORMAT);
-        if (isStart) {
-            if (newSponsorSegmentStartMillis >= 0)
-                textView.setText(dateFormatter.format(new Date(newSponsorSegmentStartMillis)));
-        } else {
-            if (newSponsorSegmentEndMillis >= 0)
-                textView.setText(dateFormatter.format(new Date(newSponsorSegmentEndMillis)));
-        }
+
+        long newSponsorSegmentMillis = isStart ? newSponsorSegmentStartMillis : newSponsorSegmentEndMillis;
+        if (newSponsorSegmentMillis >= 0)
+                textView.setText(dateFormatter.format(new Date(newSponsorSegmentMillis)));
 
         editByHandSaveDialogListener.settingStart = isStart;
         editByHandSaveDialogListener.editText = new WeakReference<>(textView);
