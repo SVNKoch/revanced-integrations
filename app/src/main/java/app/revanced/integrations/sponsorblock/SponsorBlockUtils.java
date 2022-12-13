@@ -173,13 +173,40 @@ public abstract class SponsorBlockUtils {
 
         editByHandSaveDialogListener.settingStart = isStart;
         editByHandSaveDialogListener.editText = new WeakReference<>(textView);
+        //new AlertDialog.Builder(context)
+        //        .setTitle(str(isStart ? "new_segment_time_start" : "new_segment_time_end"))
+        //        .setView(textView)
+        //        .setNegativeButton(android.R.string.cancel, null)
+        //        .setNeutralButton(str("new_segment_now"), editByHandSaveDialogListener)
+        //        .setPositiveButton(android.R.string.ok, editByHandSaveDialogListener)
+        //        .show();
+        
         new AlertDialog.Builder(context)
-                .setTitle(str(isStart ? "new_segment_time_start" : "new_segment_time_end"))
-                .setView(textView)
-                .setNegativeButton(android.R.string.cancel, null)
-                .setNeutralButton(str("new_segment_now"), editByHandSaveDialogListener)
-                .setPositiveButton(android.R.string.ok, editByHandSaveDialogListener)
-                .show();
+            .setTitle("Title")
+            .setView(textView)
+            .setItems(new CharSequence[]
+                {"button 1", "button 2", "button 3", "button 4"},
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // The 'which' argument contains the index position
+                        // of the selected item
+                        switch (which) {
+                            case 0:
+                                Toast.makeText(context, "clicked 1", Toast.LENGTH_SHORT).show();
+                                break;
+                            case 1:
+                                Toast.makeText(context, "clicked 2", Toast.LENGTH_SHORT).show();
+                                break;
+                            case 2:
+                                Toast.makeText(context, "clicked 3", Toast.LENGTH_SHORT).show();
+                                break;
+                            case 3:
+                                Toast.makeText(context, "clicked 4", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    }
+                })
+            .show();
 
         dialog.dismiss();
     };
